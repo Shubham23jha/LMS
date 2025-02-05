@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: ./server
+    ports:
+      - "5014:5014"
+    env_file:
+      - ./server/.env
+    networks:
+      - lms_network
+
+  frontend:
+    build: ./client
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - lms_network
+
+networks:
+  lms_network:
+    driver: bridge
