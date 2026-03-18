@@ -8,8 +8,9 @@ import {
   registerUser,
   resetPassword,
   updateUser,
+  getAllUsers,
 } from "../controllers/user.controller.js";
-import { isLoggedIn } from "../middlewares/auth.middleware.js";
+import { authorizeRoles, isLoggedIn } from "../middlewares/auth.middleware.js";
 import upload from "../middlewares/multer.middleware.js";
 
 const router = Router();
@@ -22,5 +23,6 @@ router.post("/reset", forgotPassword);
 router.post("/reset/:resetToken", resetPassword);
 router.post("/change-password", isLoggedIn, changePassword);
 router.put("/update/:id", isLoggedIn, upload.single("avatar"), updateUser);
+router.get("/", isLoggedIn, authorizeRoles('ADMIN'), getAllUsers);
 
 export default router;

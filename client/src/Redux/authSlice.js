@@ -5,9 +5,14 @@ import axiosInstance from "../Helper/axiosInstance";
 
 
 const storedData = localStorage.getItem("data");
+let parsedData = {};
 
-console.log(storedData);
-const parsedData = storedData ? JSON.parse(storedData) : {};
+try {
+  parsedData = (storedData && storedData !== "undefined") ? JSON.parse(storedData) : {};
+} catch (error) {
+  console.error("Error parsing user data from localStorage:", error);
+  parsedData = {};
+}
 
 const initialState = {
   isLoggedIn: localStorage.getItem("isLoggedIn") || false,
@@ -193,12 +198,14 @@ const authSlice = createSlice({
     builder
       // for user login
       .addCase(login.fulfilled, (state, action) => {
-        localStorage.setItem("data", JSON.stringify(action?.payload?.user));
-        localStorage.setItem("isLoggedIn", true);
-        localStorage.setItem("role", action?.payload?.user?.role);
-        state.isLoggedIn = true;
-        state.data = action?.payload?.user;
-        state.role = action?.payload?.user?.role;
+        if (action?.payload?.user) {
+          localStorage.setItem("data", JSON.stringify(action.payload.user));
+          localStorage.setItem("isLoggedIn", true);
+          localStorage.setItem("role", action.payload.user.role);
+          state.isLoggedIn = true;
+          state.data = action.payload.user;
+          state.role = action.payload.user.role;
+        }
       })
       // for user logout
       .addCase(logout.fulfilled, (state) => {
@@ -208,11 +215,14 @@ const authSlice = createSlice({
       })
       // for user details
       .addCase(getUserData.fulfilled, (state, action) => {
-        localStorage.setItem("data", JSON.stringify(action?.payload?.user));
-        localStorage.setItem("isLoggedIn", true);
-        state.isLoggedIn = true;
-        state.data = action?.payload?.user;
-        state.role = action?.payload?.user?.role;
+        if (action?.payload?.user) {
+          localStorage.setItem("data", JSON.stringify(action.payload.user));
+          localStorage.setItem("isLoggedIn", true);
+          localStorage.setItem("role", action.payload.user.role);
+          state.isLoggedIn = true;
+          state.data = action.payload.user;
+          state.role = action.payload.user.role;
+        }
       });
   },
 });

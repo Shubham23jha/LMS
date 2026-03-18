@@ -20,6 +20,7 @@ import EditProfile from "./Pages/User/EditProfile";
 import CreateCourse from "./Pages/Course/CreateCourse";
 import AddLecture from "./Pages/Dashboard/AddLecture";
 import DisplayLectures from "./Pages/Dashboard/DisplayLectures";
+import MailCampaign from "./Pages/Dashboard/MailCampaign";
 import RequireAuth from "./Components/Auth/RequireAuth";
 import NotRequireAuth from "./Components/Auth/NotRequireAuth";
 import Denied from "./Pages/Denied";
@@ -54,6 +55,7 @@ const App = () => {
 
         <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/email-campaign" element={<MailCampaign />} />
           <Route path="/course/addlecture" element={<AddLecture />} />
           <Route path="/course/create" element={<CreateCourse />} />
         </Route>

@@ -19,7 +19,7 @@ const Profile = () => {
   useEffect(() => {
     // getting user details
     dispatch(getUserData());
-  }, []);
+  }, [dispatch]);
   return (
     <Layout>
       <div className="min-h-[90vh] flex items-center justify-center">
@@ -27,7 +27,7 @@ const Profile = () => {
           <img
             className="w-40 m-auto rounded-full border border-black"
             src={userData?.avatar?.secure_url}
-            alt="user profile image"
+            alt="user profile"
           />
 
           <h3 className="text-xl font-semibold text-center capitalize">

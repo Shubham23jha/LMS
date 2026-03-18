@@ -12,7 +12,7 @@ const Courses = () => {
     (async () => {
       await dispatch(getAllCourses());
     })();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Layout>

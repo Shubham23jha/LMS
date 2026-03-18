@@ -1,7 +1,33 @@
+import axios from 'axios';
 import asyncHandler from '../middlewares/asyncHandler.middleware.js';
 import User from '../models/user.model.js';
 import AppError from '../utils/appError.js';
 import sendEmail from '../utils/sendEmail.js';
+
+
+export const sendEmailCampaign = asyncHandler(async (req, res, next) => {
+  const { emails, subject, body } = req.body;
+
+  if (!emails || !subject || !body || emails.length === 0) {
+    return next(new AppError('Emails, Subject, and Body are required', 400));
+  }
+
+  try {
+    const response = await axios.post(process.env.GO_WORKER_URL, {
+      recipients: emails,
+      subject,
+      body,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: 'Campaign initiated successfully',
+      data: response.data,
+    });
+  } catch (error) {
+    return next(new AppError(error.message || 'Failed to initiate campaign', 500));
+  }
+});
 
 
 export const contactUs = asyncHandler(async (req, res, next) => {

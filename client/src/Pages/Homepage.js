@@ -33,7 +33,7 @@ const Homepage = () => {
 
         {/* right section for image */}
         <div className="w-full sm:w-1/2 flex items-center justify-center">
-          <img src={homePageMainImage} alt="home page image" className="w-full max-w-md" />
+          <img src={homePageMainImage} alt="home page" className="w-full max-w-md" />
         </div>
       </div>
     </Layout>

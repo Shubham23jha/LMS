@@ -50,7 +50,7 @@ const Checkout = () => {
         toast.success("Payment Successfull");
 
         // verifying the payment
-        const res = await dispatch(verifyUserPayment(paymentDetails));
+        await dispatch(verifyUserPayment(paymentDetails));
 
         // redirecting the user according to the verification status
         !isPaymentVerified
@@ -74,7 +74,7 @@ const Checkout = () => {
       await dispatch(getRazorPayId());
       await dispatch(purchaseCourseBundle());
     })();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Layout>

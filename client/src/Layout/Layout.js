@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FiMenu } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -74,9 +74,14 @@ const Layout = ({ children }) => {
 
             {/* displaying dashboard, if user is logged in */}
             {isLoggedIn && role === "ADMIN" && (
-              <li>
-                <Link to={"/admin/dashboard"}>Admin Dashboard</Link>
-              </li>
+              <>
+                <li>
+                  <Link to={"/admin/dashboard"}>Admin Dashboard</Link>
+                </li>
+                <li>
+                  <Link to={"/admin/email-campaign"}>Mail Campaign</Link>
+                </li>
+              </>
             )}
 
             <li>
@@ -114,7 +119,7 @@ const Layout = ({ children }) => {
                     <Link to={"/user/profile"}>Profile</Link>
                   </button>
                   <button className="btn-secondary px-4 py-1 font-semibold rounded-md w-full">
-                    <Link onClick={handleLogout}>Logout</Link>
+                    <Link to="#" onClick={handleLogout}>Logout</Link>
                   </button>
                 </div>
               </li>

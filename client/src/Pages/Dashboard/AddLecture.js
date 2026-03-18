@@ -60,7 +60,7 @@ const AddLectures = () => {
     if (!courseDetails) {
       navigate(-1);
     }
-  }, []);
+  }, [courseDetails, navigate]);
   return (
     <Layout>
       <div className=" text-white flex flex-col items-center justify-center gap-10 mx-16 min-h-[90vh]">

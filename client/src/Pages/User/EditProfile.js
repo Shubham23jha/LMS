@@ -89,7 +89,7 @@ const EditProfile = () => {
               <img
                 className="w-28 h-28 rounded-full m-auto"
                 src={previewImage}
-                alt="preview image"
+                alt="preview"
               />
             ) : (
               <BsPersonCircle className="w-28 h-28 rounded-full m-auto" />

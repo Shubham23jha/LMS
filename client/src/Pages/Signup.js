@@ -72,7 +72,7 @@ const Signup = () => {
 
     // email validation using regex
     if (
-      !signupData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+      !signupData.email.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)
     ) {
       toast.error("Invalid email id");
       return;
@@ -124,7 +124,7 @@ const Signup = () => {
               <img
                 className="w-24 h-24 rounded-full m-auto"
                 src={previewImage}
-                alt="preview image"
+                alt="preview"
               />
             ) : (
               <BsPersonCircle className="w-24 h-24 rounded-full m-auto" />
